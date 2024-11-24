@@ -122,12 +122,20 @@ void PrintSymbols (float temp, float pressure, float humidity) {
     char temp_str[5] = {0, 0, 0, 0, 0};
     float_to_string(temp_str, temp, 2);
     
-    for (int i = 0; i < 5; i++) {
-        OLED_FillBuffer (10 + 7 * i, 20, char_to_symbol(temp_str[i] ));		
+    char pres_str[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+    float_to_string(pres_str, pressure, 2);
+    
+    char hum_str[5] = {0, 0, 0, 0, 0};
+    float_to_string(hum_str, humidity, 2);
+    
+    for (int i = 0; i < 9; i++) {
+        if (i < 5) {
+            OLED_FillBuffer (10 + 7 * i, 20, char_to_symbol(temp_str[i]));
+            OLED_FillBuffer (10 + 7 * i, 44, char_to_symbol(hum_str[i]));
+        }
+        OLED_FillBuffer (10 + 7 * i, 32, char_to_symbol(pres_str[i]));
     }
-    for (int i = 0; i < 7; i++) {
-        OLED_FillBuffer (10 + 7 * i, 32, &HexSym[10 + i]);		
-    }
+    
                         
     OLED_SendBuffer ();
 }
