@@ -1,0 +1,11 @@
+#include "GPIO_Init.h"
+
+void GPIO_Init(void) {
+	
+    RCC->APB2ENR |= RCC_APB2ENR_IOPAEN | RCC_APB2ENR_IOPBEN; 
+    
+	GPIOA->CRH &= ~GPIO_CRH_MODE12;
+	GPIOA->CRH |=  GPIO_CRH_MODE12;
+    GPIOA->CRH &= ~GPIO_CRH_CNF12;
+    GPIOA->CRH |=  GPIO_CRH_CNF12_0;
+}
