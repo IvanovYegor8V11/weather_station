@@ -91,6 +91,7 @@ void float_to_string(char* str, float value, uint8_t precision) {
         fl_part = fl_part * 10 - fl_int_part;
     }
 }
+
 SymbolType* char_to_symbol(char c) {
     switch (c) {
         case '0':
@@ -130,10 +131,10 @@ void PrintSymbols (float temp, float pressure, float humidity) {
     
     for (int i = 0; i < 9; i++) {
         if (i < 5) {
-            OLED_FillBuffer (10 + 7 * i, 20, char_to_symbol(temp_str[i]));
-            OLED_FillBuffer (10 + 7 * i, 44, char_to_symbol(hum_str[i]));
+            OLED_FillBuffer (27 + 7 * i, 20, char_to_symbol(temp_str[i]));
+            OLED_FillBuffer (27 + 7 * i, 44, char_to_symbol(hum_str[i]));
         }
-        OLED_FillBuffer (10 + 7 * i, 32, char_to_symbol(pres_str[i]));
+        OLED_FillBuffer (27 + 7 * i, 32, char_to_symbol(pres_str[i]));
     }
     
                         
@@ -148,6 +149,20 @@ int main (void) {
     OLED_Init();	
         
     //PrintSymbols();
+    OLED_FillBuffer (10, 20, &HexSym[15]);
+    OLED_FillBuffer (17, 20, &HexSym[14]);
+    OLED_FillBuffer (117, 20, &HexSym[17]);
+    OLED_FillBuffer (120, 20, &HexSym[12]);
+    
+    OLED_FillBuffer (10, 32, &HexSym[11]);
+    OLED_FillBuffer (17, 32, &HexSym[14]);
+    OLED_FillBuffer (117, 32, &HexSym[11]);
+    OLED_FillBuffer (124, 32, &HexSym[18]);
+    
+    OLED_FillBuffer (10, 44, &HexSym[13]);
+    OLED_FillBuffer (17, 44, &HexSym[14]);    
+    OLED_FillBuffer (120, 44, &HexSym[10]);
+    OLED_SendBuffer ();
     
 //------------------------------------------------------------------------    
     uint8_t scratchpad_data[9] = {0};

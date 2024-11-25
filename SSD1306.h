@@ -25,4 +25,4 @@ uint8_t OLED_OutDec(uint8_t X, uint8_t Y, int16_t Data, uint8_t sign);
 void OLED_OutBin(uint8_t X, uint8_t Y, uint16_t Data);
 void OLED_OutFloat_TMP36(uint8_t X, uint8_t Y, float Data) ;
 
-extern SymbolType HexSym[17];
+extern SymbolType HexSym[19];
